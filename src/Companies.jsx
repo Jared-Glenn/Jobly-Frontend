@@ -1,10 +1,16 @@
 import React from "react";
+import './Companies.css';
+
+import Company from "./Company";
+import SearchBar from "./SearchBar";
 
 function Companies() {
     return (
-        <>
-            <h1>This is the Companies Page!</h1>
-        </>
+        <div className="centered">
+            {/* Move className to the actual components. */}
+            <SearchBar className="centered" />
+            <Company className="centered" />
+        </div>
     )
 }
 
