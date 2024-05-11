@@ -1,10 +1,12 @@
 import React from "react";
 
-function Company() {
+function Company({ name, description, logoUrl }) {
     return (
-        <>
-            <h1>This is the Company Component!</h1>
-        </>
+        <div className="company">
+            <h2>{ name }</h2>
+            <p>{ description }</p>
+            {logoUrl && <img src={logoUrl} alt={name} />}
+        </div>
     )
 }
 
