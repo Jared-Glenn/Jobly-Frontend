@@ -1,4 +1,9 @@
 .company {
     margin: 20px;
     padding: 5px 15px;
+    color: black;
+}
+
+.company:hover {
+    color: rgb(0, 117, 117);
 }
