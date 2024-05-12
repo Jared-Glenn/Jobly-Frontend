@@ -8,13 +8,13 @@ function CompanyDetail() {
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);
 
-    let { handle } = useParams();
+    let params = useParams();
 
     useEffect(() => {
-        async function getCompany(companyHandle) {
+        async function getCompany(handle) {
             setIsLoading(true);
             try {
-                const res = await JoblyApi.getCompany(companyHandle);
+                const res = await JoblyApi.getCompany(handle);
                 setCompany(res.company);
             }
             catch (err) {
@@ -22,7 +22,7 @@ function CompanyDetail() {
             }
             setIsLoading(false);
         }
-        getCompany(handle);
+        getCompany(params.company);
     }, []);
 
     return (
