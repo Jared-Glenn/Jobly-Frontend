@@ -6,9 +6,9 @@ import RouteList from "./RouteList";
 function App() {
 
   return (
-    <>
+    <div className='main-div'>
       <RouteList />
-    </>
+    </div>
   )
 }
 

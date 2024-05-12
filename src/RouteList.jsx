@@ -12,7 +12,7 @@ import Profile from "./Profile";
 
 function RouteList() {
     return (
-        <BrowserRouter>
+        <BrowserRouter className="page-format">
             <Navbar />
             <Routes>
                 <Route path="/" element={ <Home /> } />

@@ -5,3 +5,8 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+
+.main-div {
+  margin: 100px;
+  background-color: transparent;
+}

@@ -27,17 +27,16 @@ function Companies() {
     }, []);
 
     return (
-        <div className="centered">
-            {/* Move className to the actual components. */}
+        <>
             <SearchBar className="centered" />
             {isLoading ? (
                 <div>Loading...</div>
             ) : error ? (
                 <div>Error: {error.map(e => <p key={e}>{e}</p>)}</div>
             ) : (
-                companies.map(company => <Company className="centered" key={company.handle} {...company} />)
+                companies.map(company => <Company key={company.handle} {...company} />)
             )}
-        </div>
+        </>
     );
 }
 

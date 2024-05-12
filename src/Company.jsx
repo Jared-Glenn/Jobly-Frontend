@@ -1,12 +1,14 @@
 import React from "react";
+import "./Company.css";
 
-function Company({ name, description, logoUrl }) {
+function Company({ handle, name, description }) {
     return (
-        <div className="company">
-            <h2>{ name }</h2>
-            <p>{ description }</p>
-            {logoUrl && <img src={logoUrl} alt={name} />}
-        </div>
+        <a href={`/companies/${ handle }`}>
+            <div className="company centered">
+                <h2>{ name }</h2>
+                <p>{ description }</p>
+            </div>
+        </a>
     )
 }
 
