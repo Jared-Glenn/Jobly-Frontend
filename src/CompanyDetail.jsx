@@ -27,7 +27,17 @@ function CompanyDetail() {
 
     return (
         <>
-            <h1>{ company.name }</h1>
+        {isLoading ? (
+                <div>Loading...</div>
+            ) : error ? (
+                <div>Error: {error.map(e => <p key={e}>{e}</p>)}</div>
+            ) : (
+                <>
+                    <h3>{ company.name }</h3>
+                    <p>{ company.description }</p>
+                </>
+            )}
+            
         </>
     )
 }
