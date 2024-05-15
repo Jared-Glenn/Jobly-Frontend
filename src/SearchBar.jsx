@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
 
-function SearchBar({ search }) {
+function SearchBar({ onSearch }) {
 
     const [ formData, setFormData ] = useState({ searchTerm: "" });
 
@@ -16,8 +16,7 @@ function SearchBar({ search }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const { searchTerm } = formData;
-        console.log(searchTerm);
-        search();
+        onSearch(searchTerm);
         setFormData({ searchTerm: "" });
     }
 

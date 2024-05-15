@@ -10,16 +10,17 @@ function Companies() {
     const [ companies, setCompanies ] = useState([]);
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);
+    const [ searchTerm, setSearchTerm ] = useState("");
 
-    const search = () => {
-        setIsLoading(true)
+    const handleSearch = (term) => {
+        setSearchTerm(term);
     }
 
     useEffect(() => {
         async function getCompanies() {
             setIsLoading(true);
             try {
-                const res = await JoblyApi.getCompanies();
+                const res = await JoblyApi.getCompanies(searchTerm);
                 setCompanies(res.companies);
             }
             catch (err) {
@@ -28,11 +29,11 @@ function Companies() {
             setIsLoading(false);
         }
         getCompanies();
-    }, [isLoading]);
+    }, [searchTerm]);
 
     return (
         <>
-            <SearchBar className="centered" search={ search } />
+            <SearchBar className="centered" onSearch={ handleSearch } />
             {isLoading ? (
                 <div>Loading...</div>
             ) : error ? (
