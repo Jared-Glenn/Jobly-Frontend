@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import JoblyApi from "./api.js";
+import "./CompanyDetail.css"
+
+import Job from "./Job.jsx";
 
 function CompanyDetail() {
 
@@ -33,8 +36,11 @@ function CompanyDetail() {
                 <div>Error: {error.map(e => <p key={e}>{e}</p>)}</div>
             ) : (
                 <>
-                    <h3>{ company.name }</h3>
-                    <p>{ company.description }</p>
+                    <h3 className="company-info">{ company.name }</h3>
+                    <p className="company-info">{ company.description }</p>
+                    <div>
+                        {company.jobs.map(job => <Job key={job.id} {...job} />)}
+                    </div>
                 </>
             )}
             

@@ -1,10 +1,15 @@
 import React from "react";
+import "./Job.css";
 
-function Job() {
+function Job({ id, title, salary, equity }) {
     return (
-        <>
-            <h1>This is a Job component!</h1>
-        </>
+        <div className="job-div">
+            <h4>{ title }</h4>
+            <p>Job# { id }</p>
+            <p>Salary: ${ salary }</p>
+            {equity ? (<p>Equity: { equity }%</p>) :
+            (<p>Equity: Not Disclosed</p>)}
+        </div>
     )
 }
 

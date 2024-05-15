@@ -1,0 +1,11 @@
+.job-div {
+    background-color: white;
+    margin: 30px;
+    padding: 10px;
+    width: 80vw;
+}
+
+p, h4 {
+    margin: 0px;
+    padding: 0px;
+}

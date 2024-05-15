@@ -11,6 +11,10 @@ function Companies() {
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);
 
+    const search = () => {
+        setIsLoading(true)
+    }
+
     useEffect(() => {
         async function getCompanies() {
             setIsLoading(true);
@@ -24,11 +28,11 @@ function Companies() {
             setIsLoading(false);
         }
         getCompanies();
-    }, []);
+    }, [isLoading]);
 
     return (
         <>
-            <SearchBar className="centered" />
+            <SearchBar className="centered" search={ search } />
             {isLoading ? (
                 <div>Loading...</div>
             ) : error ? (
