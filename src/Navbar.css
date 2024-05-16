@@ -1,11 +1,12 @@
 .navbar {
     position: fixed;
     top: 0px;
-    margin: 0;
-    padding: 0;
+    margin-left: -100px;
+    padding: 10px;
+    padding-left: 20px;
     background-color: white;
     height: 3.5vh;
-    width: 100%;
+    width: 100vh;
     overflow: hidden;
 }
 

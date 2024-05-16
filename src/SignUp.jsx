@@ -1,9 +1,12 @@
 import React from "react";
 
+import SignUpForm from "./SignUpForm.jsx"
+
 function SignUp() {
     return (
         <>
-            <h1>This is the SignUp Page!</h1>
+            <h1>SignUp</h1>
+            <SignUpForm />
         </>
     )
 }
