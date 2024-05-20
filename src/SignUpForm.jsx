@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import UserContext from "./userContext.jsx";
 
-function SignUpForm({ onSubmit }) {
+function SignUpForm() {
     const [ formData, setFormData ] = useState({
         username: "",
         password: "",
+        passwordRepeat: "",
         firstName: "",
         lastName: "",
         email: ""
     });
+    const [ isLoading, setIsLoading ] = useState(false);
+    const { registerUser } = useContext(UserContext);
+    const [ error, setError ] = useState(null);
+    const navigate = useNavigate();
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -17,22 +24,34 @@ function SignUpForm({ onSubmit }) {
         }))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const { username, password, firstName, lastName, email } = formData;
-        onSubmit( username, password, firstName, lastName, email);
-        setFormData({
-            username: "",
-            password: "",
-            firstName: "",
-            lastName: "",
-            email: ""
-        });
+        const { username, password, passwordRepeat, firstName, lastName, email } = formData;
+
+        if (password !== passwordRepeat) {
+            setError("Passwords do not match");
+            return;
+        }
+
+        setIsLoading(true);
+        setError(null);
+        try {
+            await registerUser(username, password, firstName, lastName, email);
+            navigate("home/")
+        }
+        catch (err) {
+            console.error("Registration Error:", err);
+            setError("Registration failed. Please try again.")
+        }
+        finally {
+            setIsLoading(false);
+        }
     }
 
     return (
         <>
             <form className="signupForm" onSubmit={ handleSubmit }>
+                {error && <p className="error">{error}</p>}
                 <label htmlFor="username">Username</label>
                 <input className="username-input"
                     id="username"
@@ -45,10 +64,19 @@ function SignUpForm({ onSubmit }) {
                 <label htmlFor="password">Password</label>
                 <input className="password-input"
                     id="password"
-                    type="text"
+                    type="password"
                     name="password"
                     placeholder="Password"
                     value={formData.password || ""}
+                    onChange={ handleChange }
+                />
+                <label htmlFor="password-repeat">Repeat Password</label>
+                <input className="password-input"
+                    id="password-repeat"
+                    type="password"
+                    name="passwordRepeat"
+                    placeholder="Repeat Password"
+                    value={formData.passwordRepeat || ""}
                     onChange={ handleChange }
                 />
                 <label htmlFor="fname">First Name</label>
@@ -69,7 +97,16 @@ function SignUpForm({ onSubmit }) {
                     value={formData.lname || ""}
                     onChange={ handleChange }
                 />
-                <button className="signup-form" onClick={ handleSubmit }>Sign Up!</button>
+                <label htmlFor="email">Last Name</label>
+                <input className="email-input"
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={formData.email || ""}
+                    onChange={ handleChange }
+                />
+                <button className="signup-form" type="submit" disabled={isLoading}>Sign Up!</button>
             </form>
         </>
     )

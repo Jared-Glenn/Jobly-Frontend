@@ -1,13 +1,31 @@
 import React, { useState } from 'react';
 import './App.css';
 
-import RouteList from "./RouteList";
+import RouteList from "./RouteList.jsx";
+import UserContext from "./userContext.jsx";
+import JoblyApi from './api.js';
 
 function App() {
+  const [ user, setUser ] = useState(null);
+  const [ token, setToken ] = useState(null);
+
+  const registerUser = async (username, password, firstName, lastName, email) => {
+    try {
+      const res = await JoblyApi.registerUser(username, password, firstName, lastName, email);
+      setUser({ username, firstName, lastName, email });
+      setToken(res.token);
+      JoblyApi.token = res.token;
+    }
+    catch (err) {
+      console.error("Registration Error:", err);
+    }
+  };
 
   return (
     <div className='main-div'>
-      <RouteList />
+      <UserContext.Provider value={{ user, token, registerUser }}>
+        <RouteList />
+      </UserContext.Provider>
     </div>
   )
 }
