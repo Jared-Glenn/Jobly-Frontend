@@ -37,7 +37,7 @@ function SignUpForm() {
         setError(null);
         try {
             await registerUser(username, password, firstName, lastName, email);
-            navigate("home/")
+            navigate("/")
         }
         catch (err) {
             console.error("Registration Error:", err);

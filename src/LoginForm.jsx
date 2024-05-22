@@ -5,11 +5,7 @@ import UserContext from "./userContext.jsx";
 function LoginForm() {
     const [ formData, setFormData ] = useState({
         username: "",
-        password: "",
-        passwordRepeat: "",
-        firstName: "",
-        lastName: "",
-        email: ""
+        password: ""
     });
     const [ isLoading, setIsLoading ] = useState(false);
     const { registerUser } = useContext(UserContext);
@@ -26,22 +22,17 @@ function LoginForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { username, password, passwordRepeat, firstName, lastName, email } = formData;
-
-        if (password !== passwordRepeat) {
-            setError("Passwords do not match");
-            return;
-        }
+        const { username, password } = formData;
 
         setIsLoading(true);
         setError(null);
         try {
-            await registerUser(username, password, firstName, lastName, email);
-            navigate("home/")
+            await loginUser(username, password);
+            navigate("/")
         }
         catch (err) {
-            console.error("Registration Error:", err);
-            setError("Registration failed. Please try again.")
+            console.error("Login Error:", err);
+            setError("Login failed. Please try again.")
         }
         finally {
             setIsLoading(false);
@@ -70,43 +61,7 @@ function LoginForm() {
                     value={formData.password || ""}
                     onChange={ handleChange }
                 />
-                <label htmlFor="password-repeat">Repeat Password</label>
-                <input className="password-input"
-                    id="password-repeat"
-                    type="password"
-                    name="passwordRepeat"
-                    placeholder="Repeat Password"
-                    value={formData.passwordRepeat || ""}
-                    onChange={ handleChange }
-                />
-                <label htmlFor="fname">First Name</label>
-                <input className="fname-input"
-                    id="fname"
-                    type="text"
-                    name="fname"
-                    placeholder="First Name"
-                    value={formData.fname || ""}
-                    onChange={ handleChange }
-                />
-                <label htmlFor="lname">Last Name</label>
-                <input className="lname-input"
-                    id="lname"
-                    type="text"
-                    name="lname"
-                    placeholder="Last Name"
-                    value={formData.lname || ""}
-                    onChange={ handleChange }
-                />
-                <label htmlFor="email">Last Name</label>
-                <input className="email-input"
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email || ""}
-                    onChange={ handleChange }
-                />
-                <button className="signup-form" type="submit" disabled={isLoading}>Sign Up!</button>
+                <button className="login-form" type="submit" disabled={isLoading}>Sign Up!</button>
             </form>
         </>
     )
