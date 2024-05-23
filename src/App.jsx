@@ -8,6 +8,7 @@ import JoblyApi from './api.js';
 function App() {
   const [ user, setUser ] = useState(null);
   const [ token, setToken ] = useState(null);
+  const [ signedIn, setSignedIn ] = useState(false);
 
   const registerUser = async (username, password, firstName, lastName, email) => {
     try {
@@ -15,6 +16,8 @@ function App() {
       setUser({ username, firstName, lastName, email });
       setToken(res.token);
       JoblyApi.token = res.token;
+
+      setSignedIn(true);
     }
     catch (err) {
       console.error("Registration Error:", err);
@@ -24,11 +27,14 @@ function App() {
   const loginUser = async (user, password) => {
     try {
       const res = await JoblyApi.loginUser(user, password);
-      const { username, firstName, lastName, email } = res.user;
-      setUser({ username, firstName, lastName, email });
-      console.log("TOKEN!!!!!!!!", res.token)
       setToken(res.token);
       JoblyApi.token = res.token;
+
+      const secRes = await JoblyApi.getUserInfo(user);
+      const { username, firstName, lastName, email } = secRes.user;
+      setUser({ username, firstName, lastName, email });
+
+      setSignedIn(true);
     }
     catch (err) {
       console.error("Registration Error:", err);
@@ -37,7 +43,7 @@ function App() {
 
   return (
     <div className='main-div'>
-      <UserContext.Provider value={{ user, token, registerUser, loginUser }}>
+      <UserContext.Provider value={{ user, token, signedIn, setUser, setToken, setSignedIn, registerUser, loginUser }}>
         <RouteList />
       </UserContext.Provider>
     </div>

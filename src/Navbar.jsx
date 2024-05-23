@@ -1,23 +1,53 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import './Navbar.css';
 
+import UserContext from "./userContext.jsx";
+
 function Navbar() {
+    const { user, token, signedIn, setUser, setToken, setSignedIn } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    const logout = () => {
+        setUser({});
+        setToken({});
+        setSignedIn(false);
+        navigate("/");
+    }
+
     return (
         <div className="navbar">
-            <span>Jobly</span>
-            <span className="navbar-button">
-                <Link className="navbar-link" to="/">Home</Link>
+            <span>
+            <Link className="navbar-home" to="/">Jobly</Link>
             </span>
-            <span className="navbar-button">
-            <Link className="navbar-link" to="/companies">Companies</Link>
-            </span>
-            <span className="navbar-button">
-            <Link className="navbar-link" to="/jobs">Jobs</Link>
-            </span>
-            <span className="navbar-button">
-            <Link className="navbar-link" to="/profile">Profile</Link>
-            </span>
+            {
+                signedIn ? (
+                <span>
+                    <span className="navbar-button">
+                        <Link className="navbar-link" to="/companies">Companies</Link>
+                    </span>
+                    <span className="navbar-button">
+                        <Link className="navbar-link" to="/jobs">Jobs</Link>
+                    </span>
+                    <span className="navbar-button">
+                        <Link className="navbar-link" to="/profile">Profile</Link>
+                    </span>
+                    <span className="navbar-button">
+                        <button className="navbar-link" onClick={ logout }>Log out { user.username }</button>
+                    </span>
+                </span>
+                ) : (
+                    <span>
+                        <span className="navbar-button">
+                            <Link className="navbar-link" to="/login">Login</Link>
+                        </span>
+                        <span className="navbar-button">
+                            <Link className="navbar-link" to="/signup">Sign Up</Link>
+                        </span>
+                    </span>
+                )
+
+            }
         </div>
     )
 }

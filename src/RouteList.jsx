@@ -12,13 +12,11 @@ import Profile from "./Profile";
 
 function RouteList() {
 
-    const [ signedIn, setSignedIn ] = useState(false);
-
     return (
         <BrowserRouter className="page-format">
             <Navbar />
             <Routes>
-                <Route path="/" element={ <Home signedIn={ signedIn } /> } />
+                <Route path="/" element={ <Home /> } />
                 <Route path="/companies" element={ <Companies /> } />
                 <Route path="/companies/:company" element={ <CompanyDetail /> } />
                 <Route path="/jobs" element={ <Jobs /> } />
