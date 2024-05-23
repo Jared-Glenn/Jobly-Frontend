@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./Navbar";
@@ -13,7 +13,7 @@ import Profile from "./Profile";
 function RouteList() {
 
     return (
-        <BrowserRouter className="page-format">
+        <BrowserRouter >
             <Navbar />
             <Routes>
                 <Route path="/" element={ <Home /> } />
