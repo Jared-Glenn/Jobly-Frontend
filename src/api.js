@@ -67,9 +67,16 @@ class JoblyApi {
   }
 
   // Register as a user
-  static async registerUser(username, password, firstName, lastName) {
-    const data = { username, password, firstName, lastName }
+  static async registerUser(username, password, firstName, lastName, email) {
+    const isAdmin = false;
+    const data = { username, password, firstName, lastName, email, isAdmin }
     const res = await this.request('users/', data, "post");
+    return res;
+  }
+
+  static async loginUser(username, password) {
+    const data = { username, password }
+    const res = await this.request(`users/${ username }`, data, "get");
     return res;
   }
 }

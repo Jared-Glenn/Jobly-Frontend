@@ -21,9 +21,23 @@ function App() {
     }
   };
 
+  const loginUser = async (user, password) => {
+    try {
+      const res = await JoblyApi.loginUser(user, password);
+      const { username, firstName, lastName, email } = res.user;
+      setUser({ username, firstName, lastName, email });
+      console.log("TOKEN!!!!!!!!", res.token)
+      setToken(res.token);
+      JoblyApi.token = res.token;
+    }
+    catch (err) {
+      console.error("Registration Error:", err);
+    }
+  };
+
   return (
     <div className='main-div'>
-      <UserContext.Provider value={{ user, token, registerUser }}>
+      <UserContext.Provider value={{ user, token, registerUser, loginUser }}>
         <RouteList />
       </UserContext.Provider>
     </div>

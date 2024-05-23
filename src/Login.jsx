@@ -1,9 +1,10 @@
 import React from "react";
+import LoginForm from "./LoginForm.jsx"
 
 function Login() {
     return (
         <>
-            <h1>This is the Login Page!</h1>
+            <h1>Login</h1>
             <LoginForm />
         </>
     )

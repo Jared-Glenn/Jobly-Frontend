@@ -8,7 +8,7 @@ function LoginForm() {
         password: ""
     });
     const [ isLoading, setIsLoading ] = useState(false);
-    const { registerUser } = useContext(UserContext);
+    const { loginUser } = useContext(UserContext);
     const [ error, setError ] = useState(null);
     const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ function LoginForm() {
 
     return (
         <>
-            <form className="signupForm" onSubmit={ handleSubmit }>
+            <form className="loginForm" onSubmit={ handleSubmit }>
                 {error && <p className="error">{error}</p>}
                 <label htmlFor="username">Username</label>
                 <input className="username-input"

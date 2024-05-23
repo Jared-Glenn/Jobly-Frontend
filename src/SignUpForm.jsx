@@ -79,22 +79,22 @@ function SignUpForm() {
                     value={formData.passwordRepeat || ""}
                     onChange={ handleChange }
                 />
-                <label htmlFor="fname">First Name</label>
-                <input className="fname-input"
-                    id="fname"
+                <label htmlFor="firstName">First Name</label>
+                <input className="firstName-input"
+                    id="firstName"
                     type="text"
-                    name="fname"
+                    name="firstName"
                     placeholder="First Name"
-                    value={formData.fname || ""}
+                    value={formData.firstName || ""}
                     onChange={ handleChange }
                 />
-                <label htmlFor="lname">Last Name</label>
-                <input className="lname-input"
-                    id="lname"
+                <label htmlFor="lastName">Last Name</label>
+                <input className="lastName-input"
+                    id="lastName"
                     type="text"
-                    name="lname"
+                    name="lastName"
                     placeholder="Last Name"
-                    value={formData.lname || ""}
+                    value={formData.lastName || ""}
                     onChange={ handleChange }
                 />
                 <label htmlFor="email">Last Name</label>
