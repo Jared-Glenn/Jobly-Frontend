@@ -61,7 +61,7 @@ function LoginForm() {
                     value={formData.password || ""}
                     onChange={ handleChange }
                 />
-                <button className="login-form" type="submit" disabled={isLoading}>Sign Up!</button>
+                <button className="login-form" type="submit" disabled={isLoading}>Login!</button>
             </form>
         </>
     )
