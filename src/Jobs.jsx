@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Jobs.css";
+import './SearchAndList.css';
 import JoblyApi from "./api.js";
 
 import Job from "./Job.jsx";
@@ -34,7 +34,7 @@ function Jobs() {
 
     return (
         <>
-            <SearchBar className="centered" onSearch={ handleSearch } />
+            <SearchBar className="list" onSearch={ handleSearch } />
             {isLoading ? (
                 <div>Loading...</div>
             ) : error ? (

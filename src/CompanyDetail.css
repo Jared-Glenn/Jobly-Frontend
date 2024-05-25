@@ -1,3 +1,9 @@
 .company-info {
     color: white;
 }
+
+h3.company-info {
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 50px;
+}

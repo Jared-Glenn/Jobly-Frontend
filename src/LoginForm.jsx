@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import UserContext from "./userContext.jsx";
+import "./Forms.css";
 
 function LoginForm() {
     const [ formData, setFormData ] = useState({
@@ -41,7 +42,7 @@ function LoginForm() {
 
     return (
         <>
-            <form className="loginForm" onSubmit={ handleSubmit }>
+            <form className="loginForm form" onSubmit={ handleSubmit }>
                 {error && <p className="error">{error}</p>}
                 <label htmlFor="username">Username</label>
                 <input className="username-input"
@@ -61,7 +62,7 @@ function LoginForm() {
                     value={formData.password || ""}
                     onChange={ handleChange }
                 />
-                <button className="login-form" type="submit" disabled={isLoading}>Login!</button>
+                <button className="form-button" type="submit" disabled={isLoading}>Login</button>
             </form>
         </>
     )

@@ -1,7 +1,12 @@
+h2.company-name {
+    margin: 0;
+}
+
 .company {
     margin: 20px;
-    padding: 5px 15px;
+    padding: 25px 20px;
     color: black;
+    background-color: white;
 }
 
 .company:hover {

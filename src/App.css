@@ -1,4 +1,8 @@
-body {
+body, html {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-image: url("./assets/website_background.jpg");
   background-repeat: no-repeat;
   background-position: center;
@@ -7,6 +11,98 @@ body {
 }
 
 .main-div {
-  margin: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  place-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 15vh;
   background-color: transparent;
+  overflow-y: auto;
+  position: relative;
+  top: 0;
+}
+
+.error {
+  color: red;
+  margin-bottom: 15px;
+}
+
+#main {
+  font-size: 60px;
+}
+
+h1.title {
+  font-size: 30px;
+  color: white;
+  text-shadow: black 1px 0 5px;
+  margin-bottom: 20px;
+}
+
+h2.title {
+  font-size: 30px;
+  color: white;
+  text-shadow: black 1px 0 5px;
+  margin-bottom: 20px;
+}
+
+p.title {
+  font-size: 30px;
+  color: white;
+  text-shadow: black 1px 0 5px;
+  margin-bottom: 20px;
+}
+
+button.form-button {
+  width: 150px;
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+button.main-button {
+  width: 150px;
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(2, 73, 105);;
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+  font-weight: bold;
+}
+
+button.main-button:hover {
+  color: rgb(2, 73, 105);
+  background-color: white;
+}
+
+p.no-account {
+  color: white;
+  font-weight: bold;
+  margin: 20px;
+  font-size: 20px;
+  text-shadow: black 1px 0 5px;
+}
+
+a.to-signup {
+  color: rgb(143, 219, 255);
+}
+
+a.to-signup:hover {
+  color: black;
+  text-shadow: white 1px 0 5px;
 }

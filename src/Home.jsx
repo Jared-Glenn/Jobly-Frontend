@@ -8,14 +8,14 @@ function Home() {
 
     return (
         <>
-            <h1>Jobly</h1>
-            <p>All the jobs in one, convenient place.</p>
+            <h1 id="main" className="title">Jobly</h1>
+            <p className="title">All the jobs in one, convenient place.</p>
             { signedIn ? (
-                <h2>Welcome Back, { user.username }!</h2>
+                <h2 className="title">Welcome Back, { user.username }!</h2>
             ) : (
                 <div>
-                    <Link to="/login"><button>Log In</button></Link>
-                    <Link to="/signup"><button>Sign Up</button></Link>
+                    <Link to="/login"><button className="main-button">Log In</button></Link>
+                    <Link to="/signup"><button className="main-button">Sign Up</button></Link>
                 </div>
             )}
             

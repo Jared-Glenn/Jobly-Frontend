@@ -26,9 +26,9 @@ function Job({ id, title, salary, equity }) {
             {equity ? (<p>Equity: { equity }%</p>) :
             (<p>Equity: Not Disclosed</p>)}
             {appliedAlready ? (
-                <button type="button" disabled>Applied</button>
+                <button type="button" className="form-button" disabled>Applied</button>
             ) : (
-                <button type="button" className="job-apply" onClick={ handleApply }>Apply</button>
+                <button type="button" className="form-button" onClick={ handleApply }>Apply</button>
             )}
         </div>
     )

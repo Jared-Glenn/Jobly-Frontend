@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import UserContext from "./userContext.jsx";
+import "./Forms.css";
 
 function ProfileForm() {
     
@@ -44,9 +45,10 @@ function ProfileForm() {
 
     return (
         <>
-            <form className="profile-form" onSubmit={ handleSubmit }>
+            <form className="profile-form form" onSubmit={ handleSubmit }>
                 {error && <p className="error">{error}</p>}
                 <label htmlFor="username">Username</label>
+                <br />
                 <input className="username-input"
                     id="username"
                     type="text"
@@ -55,7 +57,9 @@ function ProfileForm() {
                     value={formData.username || ""}
                     onChange={ handleChange }
                 />
+                <br />
                 <label htmlFor="firstName">First Name</label>
+                <br />
                 <input className="firstName-input"
                     id="firstName"
                     type="text"
@@ -64,7 +68,9 @@ function ProfileForm() {
                     value={formData.firstName || ""}
                     onChange={ handleChange }
                 />
+                <br />
                 <label htmlFor="lastName">Last Name</label>
+                <br />
                 <input className="lastName-input"
                     id="lastName"
                     type="text"
@@ -73,7 +79,9 @@ function ProfileForm() {
                     value={formData.lastName || ""}
                     onChange={ handleChange }
                 />
+                <br />
                 <label htmlFor="email">Last Name</label>
+                <br />
                 <input className="email-input"
                     id="email"
                     type="email"
@@ -82,7 +90,8 @@ function ProfileForm() {
                     value={formData.email || ""}
                     onChange={ handleChange }
                 />
-                <button className="profile-form" type="submit" disabled={isLoading}>Save Changes</button>
+                <br />
+                <button className="form-button" type="submit" disabled={isLoading}>Save Changes</button>
             </form>
         </>
     )

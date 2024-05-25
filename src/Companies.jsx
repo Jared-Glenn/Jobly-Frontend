@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './Companies.css';
+import './SearchAndList.css';
 import JoblyApi from "./api.js";
 
 import Company from "./Company";
@@ -33,13 +33,19 @@ function Companies() {
 
     return (
         <>
-            <SearchBar className="centered" onSearch={ handleSearch } />
+            <div className="search-bar-container">
+                <SearchBar className="search-bar" onSearch={ handleSearch } />
+            </div>
             {isLoading ? (
                 <div>Loading...</div>
             ) : error ? (
                 <div>Error: {error.map(e => <p key={e}>{e}</p>)}</div>
             ) : (
-                companies.map(company => <Company key={company.handle} {...company} />)
+                <div className="list">
+                    {companies.map(company => (
+                        <Company key={company.handle} {...company} />
+                    ))}
+                </div>
             )}
         </>
     );

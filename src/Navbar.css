@@ -6,20 +6,37 @@ span {
 .navbar {
     position: fixed;
     top: 0px;
-    margin-left: -100px;
-    padding: 10px;
-    padding-left: 20px;
+    left: 0;
+    right: 0;
+    padding: 10px 20px;
     background-color: white;
     height: 3.5vh;
-    width: 100vh;
-    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-home {
+    margin-left: 50px;
+    color: rgb(53, 164, 255);
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.navbar-home:hover {
+    color: black;
 }
 
 .navbar-link {
-    margin: 0px;
-    padding: 10px;
+    margin: 0px 30px;
+    padding: 10px 20px;
     font-size: 1.5rem;
     color: rgb(2, 73, 105);
+    text-decoration: none;
+    border-radius: 10px;
+    min-width: 100px;
 }
 
 .navbar-link:hover {
@@ -28,6 +45,5 @@ span {
 }
 
 .navbar-button {
-    margin: 0;
-    width: 500px;
+    margin: 0 10px;
 }
