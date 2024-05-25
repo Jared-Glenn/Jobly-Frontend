@@ -37,9 +37,9 @@ function App() {
     localStorage.setItem('signedIn', JSON.stringify(signedIn));
   }, [signedIn]);
 
-  const registerUser = async (username, password, firstName, lastName, email) => {
+  const registerUser = async (userName, pw, fName, lName, emailAddress) => {
     try {
-      const res = await JoblyApi.registerUser(username, password, firstName, lastName, email);
+      const res = await JoblyApi.registerUser(userName, pw, fName, lName, emailAddress);
       const applications = [];
       setUser({ username, firstName, lastName, email, applications });
       setToken(res.token);
@@ -52,13 +52,13 @@ function App() {
     }
   };
 
-  const loginUser = async (user, password) => {
+  const loginUser = async (userName, password) => {
     try {
-      const res = await JoblyApi.loginUser(user, password);
+      const res = await JoblyApi.loginUser(userName, password);
       setToken(res.token);
       JoblyApi.token = res.token;
 
-      const secRes = await JoblyApi.getUserInfo(user);
+      const secRes = await JoblyApi.getUserInfo(userName);
       const { username, firstName, lastName, email, applications } = secRes.user;
       setUser({ username, firstName, lastName, email, applications });
 
@@ -69,10 +69,22 @@ function App() {
     }
   };
 
-  const updateUser = async (username, firstName, lastName, email) => {
+  const updateUser = async (userName, fName, lName, emailAddress) => {
     try {
-      await JoblyApi.updateUserInfo(username, firstName, lastName, email);
-      const res = await JoblyApi.getUserInfo(user);
+      await JoblyApi.updateUserInfo(userName, fName, lName, emailAddress);
+      const res = await JoblyApi.getUserInfo(userName);
+      const { username, firstName, lastName, email, applications } = res.user;
+      setUser({ username, firstName, lastName, email, applications });
+    }
+    catch (err) {
+      console.error("Update Error", err);
+    }
+  }
+
+  const apply = async (userName, job_id) => {
+    try {
+      await JoblyApi.applyUserForJob(userName, job_id);
+      const res = await JoblyApi.getUserInfo(userName);
       const { username, firstName, lastName, email, applications } = res.user;
       setUser({ username, firstName, lastName, email, applications });
     }
@@ -83,7 +95,7 @@ function App() {
 
   return (
     <div className='main-div'>
-      <UserContext.Provider value={{ user, token, signedIn, setUser, setToken, setSignedIn, registerUser, loginUser, updateUser }}>
+      <UserContext.Provider value={{ user, token, signedIn, setUser, setToken, setSignedIn, registerUser, loginUser, updateUser, apply }}>
         <RouteList />
       </UserContext.Provider>
     </div>
