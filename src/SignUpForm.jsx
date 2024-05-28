@@ -98,7 +98,7 @@ function SignUpForm() {
                     value={formData.lastName || ""}
                     onChange={ handleChange }
                 />
-                <label htmlFor="email">Last Name</label>
+                <label htmlFor="email">Email</label>
                 <input className="email-input"
                     id="email"
                     type="email"
