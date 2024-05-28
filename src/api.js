@@ -16,6 +16,7 @@ class JoblyApi {
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
+    console.debug("Current Token:", JoblyApi.token);
 
     //there are multiple ways to pass an authorization token, this is how you pass it in the header.
     //this has been provided to show you another way to pass the token. you are only expected to read this code for this project.
@@ -37,6 +38,16 @@ class JoblyApi {
   // Individual API routes
 
   /** Get details on a company by handle. */
+
+  static setToken(newToken) {
+    if (typeof newToken === 'string') {
+      console.debug("Setting Token", newToken);
+    JoblyApi.Api.token = newToken;
+    }
+    else {
+      console.error("Invalid token type, expected a string.")
+    }
+  }
 
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);

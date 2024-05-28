@@ -29,7 +29,7 @@ function App() {
   useEffect(() => {
     console.log("Token state changed:", token);
     localStorage.setItem('token', token);
-    JoblyApi.token = token;
+    JoblyApi.setToken = token;
   }, [token]);
 
   useEffect(() => {
