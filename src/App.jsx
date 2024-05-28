@@ -42,6 +42,7 @@ function App() {
       const res = await JoblyApi.registerUser(userName, pw, fName, lName, emailAddress);
       const applications = [];
       setUser({ username, firstName, lastName, email, applications });
+      console.log("TOKEN!!!!", res.token);
       setToken(res.token);
       JoblyApi.token = res.token;
 
@@ -55,6 +56,7 @@ function App() {
   const loginUser = async (userName, password) => {
     try {
       const res = await JoblyApi.loginUser(userName, password);
+      console.log("TOKEN!!!!", res.token);
       setToken(res.token);
       JoblyApi.token = res.token;
 
